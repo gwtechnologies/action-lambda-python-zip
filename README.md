@@ -13,7 +13,6 @@ In order for the Action to have access to the code, you must use the `actions/ch
 
 ### Structure
 - Lambda code should be `lambda_function.py`** unless you want to have a customized file name.
-- **Dependencies must be stored in a `requirements.txt`**
 
 ### Environment variables
 Storing credentials as secret is stronly recommended. 
@@ -23,15 +22,11 @@ Storing credentials as secret is stronly recommended.
 
 ### Inputs
 - `lambda_region`  
-- `lambda_layer_arn`  
-    The ARN for the Lambda layer the dependencies should be pushed to **without the version** (version will be automatically updated on AWS).
 - `lambda_function_name`  
     The Lambda function name. [From the AWS docs](https://docs.aws.amazon.com/cli/latest/reference/lambda/update-function-code.html), it can be any of the following:
     - Function name - `function-name`  
     - Function ARN - `arn:aws:lambda:us-west-2:123456789012:function:function-name`  
     - Partial ARN - `123456789012:function:function-name`
-- `requirements_txt`
-    The name/path for the `requirements.txt` file. Defaults to `requirements.txt`.
 
 ### Example Workflow
 ```yaml
@@ -46,9 +41,8 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Deploy code to Lambda
-      uses: qubitro/action-lambda-python-zip@v1.0
+      uses: gwtechnologies/action-lambda-python-zip@v1.0
       with:
-        lambda_layer_arn: 'arn:aws:lambda:eu-central-1:222222222222:layer:layer-name'
         lambda_function_name: ${{ secrets.LAMBDA_FUNCTION_NAME }}
         lambda_region: 'eu-central-1'
       env:
