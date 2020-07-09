@@ -16,8 +16,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.requirements_txt }}
-    - ${{ inputs.lambda_layer_arn }}
     - ${{ inputs.lambda_function_name }}
     - ${{ inputs.lambda_region }}
 branding:
