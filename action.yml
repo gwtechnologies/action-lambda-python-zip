@@ -1,14 +1,7 @@
 name: AWS Lambda Zip Deploy - Python
-author: Qubitro
-description: Zip deploy to AWS Lambda with requirements in a separate layer.
+author: Gautham
+description: Deploy code to AWS Lambda.
 inputs:
-  requirements_txt:
-    description: the name/path to the requirements.txt file
-    required: true
-    default: 'requirements.txt'
-  lambda_layer_arn:
-    description: The ARN for the Lambda layer the dependencies should be pushed to without the version (every push is a new version).
-    required: true
   lambda_function_name:
     description: The Lambda function name. Check the AWS docs/readme for examples.
     required: true
@@ -18,6 +11,3 @@ runs:
   args:
     - ${{ inputs.lambda_function_name }}
     - ${{ inputs.lambda_region }}
-branding:
-  icon: 'cloud-lightning'
-  color: 'white'
